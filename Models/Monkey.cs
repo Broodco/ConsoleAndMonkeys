@@ -1,4 +1,5 @@
-﻿using ConsoleAndMonkeys.Interfaces;
+﻿using ConsoleAndMonkeys.Events;
+using ConsoleAndMonkeys.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,6 +12,7 @@ namespace ConsoleAndMonkeys.Models
     {
         public string Name { get; set; }
         public List<ITrick> Tricks { get; set; }
+        public event EventHandler<TrickExecutionEvent> RaiseTrickExecutionEvent;
 
         public Monkey(string name, List<ITrick> tricks)
         {
@@ -29,12 +31,21 @@ namespace ConsoleAndMonkeys.Models
             {
                 DoTrick(trick);
             }
+            Console.WriteLine("{0} a fini ses tours.\n", Name);
+
         }
 
         // Effectuer un trick -> dispatch un event + call trick execute
         private void DoTrick(ITrick trick)
         {
-            Console.WriteLine("{0} est entrain de faire une tour. Il fait le tour {1}, qui est un(e) {2} !", Name, trick.Name, trick.Category);
+            string trickType = trick.Category == TrickCategory.Acrobatie ? "une acrobatie" : "un tour de musique";
+            Console.WriteLine("{0} est entrain de faire un tour. Il fait le tour '{1}', qui est {2} !", Name, trick.Name, trickType);
+            OnRaiseTrickExecutionEvent(new TrickExecutionEvent(trick, Name));
+        }
+
+        protected virtual void OnRaiseTrickExecutionEvent(TrickExecutionEvent e)
+        {
+            RaiseTrickExecutionEvent?.Invoke(this, e);
         }
     }
 }

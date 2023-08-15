@@ -25,7 +25,7 @@ namespace ConsoleAndMonkeys.Models
 
         public void OrderMonkeysToDoTricks()
         {
-            Console.WriteLine("{0} demande a ses singes d'exécuter leurs tours.", Name);
+            Console.WriteLine("{0} demande a ses singes d'exécuter leurs tours.\n", Name);
 
             if (Monkeys.Count == 0)
             {

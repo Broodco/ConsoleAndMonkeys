@@ -9,6 +9,12 @@ namespace ConsoleAndMonkeys.Interfaces
     internal interface ITrick
     {
         string Name { get; set; }
-        string Category { get; set; }
+        TrickCategory Category { get; set; }
+    }
+
+    enum TrickCategory
+    {
+        Musique,
+        Acrobatie
     }
 }

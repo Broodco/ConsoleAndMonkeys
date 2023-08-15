@@ -9,13 +9,14 @@ namespace ConsoleAndMonkeys.Models
 {
     internal class Trick : ITrick
     {
-        public string Category { get; set; }
+        public TrickCategory Category { get; set; }
         public string Name { get; set; }
 
-        public Trick(string category, string name)
+        public Trick(TrickCategory category, string name)
         {
             Category = category;
             Name = name;
         }
     }
+
 }
