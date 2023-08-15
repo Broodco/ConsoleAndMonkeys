@@ -1,13 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace ConsoleAndMonkeys.Interfaces
+﻿namespace ConsoleAndMonkeys.Interfaces
 {
     internal interface IHandler
     {
         void OrderMonkeysToDoTricks();
+        void AddMonkey(IMonkey monkey);
     }
 }
